@@ -8,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // ========== CONFIG ==========
-const LIVREUR = '22507XXXXXXXXX@s.whatsapp.net'; // ← REMPLACE PAR TON NUMÉRO LIVREUR
+const LIVREUR = '243901173598@s.whatsapp.net'; // ← REMPLACE PAR TON NUMÉRO LIVREUR
 
 const MENU = [
   { id: 1, nom: '🍔 Burger Classique', prix: 3500 },
@@ -263,4 +263,3 @@ app.listen(PORT, () => {
   console.log(`>>> 🚀 Bot restaurant port ${PORT}`);
   startBot();
 });
-
