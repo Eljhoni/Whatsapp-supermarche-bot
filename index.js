@@ -1,6 +1,6 @@
 const express = require('express');
 const QRCode = require('qrcode');
-const { default: makeWASocket, DisconnectReason, useMultiFileAuthState } = require('@whiskeysockets/baileys');
+const { default: makeWASocket, DisconnectReason, useMultiFileAuthState, fetchLatestBaileysVersion } = require('@whiskeysockets/baileys');
 const { Boom } = require('@hapi/boom');
 const fs = require('fs');
 
@@ -69,7 +69,11 @@ async function startBot() {
     const { state, saveCreds } = await useMultiFileAuthState('./auth_info_baileys');
     console.log('>>> Auth state OK');
 
+    const { version, isLatest } = await fetchLatestBaileysVersion();
+    console.log(`>>> Version Baileys: ${version.join('.')}, latest: ${isLatest}`);
+
     const sock = makeWASocket({
+      version,
       auth: state,
       browser: ['Ubuntu', 'Chrome', '22.04.4']
     });
@@ -119,3 +123,4 @@ app.listen(PORT, () => {
   console.log(`>>> Serveur sur port ${PORT}`);
   startBot();
 });
+
